@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cabasho Rasmi - Baxnaano Hospital</title>
+<title> - Baxnaano Hospital</title>
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-192.png">
@@ -398,7 +398,7 @@
       </div>
       <div>
         <div class="brand-name">Baxnaano Hospital</div>
-        <div class="brand-tag">Cabasho Rasmi ah</div>
+        <div class="brand-tag">SHARFID KARAMO</div>
       </div>
     </div>
     <div class="top-row">
@@ -416,11 +416,11 @@
 
   <div class="body">
     <div class="field">
-      <label for="fnote">Faahfaahinta cabashada</label>
+      <label for="fnote">KUMAHSAN TAHAY DORASHADAADA WALAL</label>
       <div class="input-wrap">
         <textarea id="fnote" placeholder="Ku qor si faahfaahsan sababta cabashadaada..."></textarea>
       </div>
-      <p class="error-note" id="errNote">Fadlan buuxi faahfaahinta cabashada.</p>
+      <p class="error-note" id="errNote"> faahfaahinta .</p>
     </div>
 
     <button class="submit-btn" id="sendBtn">
@@ -465,7 +465,7 @@
     let msg = `*CABASHO RASMI AH - BAXNAANO HOSPITAL*\n\n`;
     msg += `Taariikh: ${today}\n\n`;
     msg += `Faahfaahinta cabashada:\n${note}\n\n`;
-    msg += `— Waxaan rajaynayaa in cabashadan si degdeg ah loo eego. Mahadsanid.`;
+    msg += `— Waxaan rajaynayaa in  si degdeg ah loo eego. Mahadsanid.`;
 
     const url = `https://wa.me/${CARE_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
@@ -546,7 +546,7 @@
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(11);
     doc.setTextColor(207, 227, 216);
-    doc.text('Cabasho Rasmi ah  ·  Warqad Rasmi', margin, 90);
+    doc.text('MUDNAAN Rasmi ah  ·  Warqad Rasmi', margin, 90);
 
     const today = new Date().toLocaleDateString('so-SO', { year: 'numeric', month: 'long', day: 'numeric' });
     doc.setFontSize(10);
@@ -585,7 +585,7 @@
     doc.setFont('helvetica', 'italic');
     doc.setFontSize(11.5);
     doc.setTextColor(...grey);
-    doc.text('Waxaan rajaynayaa in cabashadan si degdeg ah loo eego. Mahadsanid.', margin, y);
+    doc.text(. Mahadsanid.', margin, y);
     y += 46;
 
     doc.setFont('helvetica', 'normal');
@@ -601,11 +601,11 @@
     doc.setFont('helvetica', 'normal');
     doc.setFontSize(9);
     doc.setTextColor(...grey);
-    doc.text('Baxnaano Hospital — Cabasho Rasmi ah', margin, pageH - 54);
+    doc.text('Baxnaano Hospital — MUDNAAN Rasmi ah', margin, pageH - 54);
     doc.text('La soo saaray si otomaatig ah', margin, pageH - 40);
 
     const fileDate = new Date().toISOString().slice(0, 10);
-    doc.save(`Cabasho-Baxnaano-${fileDate}.pdf`);
+    doc.save(`-Baxnaano-${fileDate}.pdf`);
   });
 
   // ---- PWA: install prompt ----
