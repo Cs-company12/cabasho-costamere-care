@@ -433,6 +433,173 @@
   .family-card-actions{ display:grid; gap:10px; }
   .family-card-actions .pdf-btn{ margin-top:0; }
   .family-card-actions .pdf-btn.secondary{ background:#f7f1e3; }
+
+  /* ---------- Records Table Section ---------- */
+  .records-section{
+    width:100%;
+    max-width:420px;
+    margin-top:22px;
+    background:#fffdf8;
+    border:1px solid var(--line);
+    border-radius:18px;
+    box-shadow: 0 20px 40px -20px rgba(28,37,33,0.25);
+    overflow:hidden;
+    position:relative;
+    z-index:1;
+  }
+  .records-head{
+    background: linear-gradient(135deg, var(--green) 0%, #1f4235 100%);
+    color:#fdf9ee;
+    padding:18px 20px 16px;
+    position:relative;
+    overflow:hidden;
+  }
+  .records-head::before{
+    content:"";
+    position:absolute;
+    top:-50px; right:-50px;
+    width:140px; height:140px;
+    border:1px dashed rgba(255,255,255,0.08);
+    border-radius:50%;
+    animation: ring 40s linear infinite;
+  }
+  .records-title{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:15px;
+    font-weight:700;
+    margin:0 0 3px;
+    letter-spacing:.04em;
+    position:relative;
+  }
+  .records-subtitle{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:11px;
+    color:#d8ead9;
+    letter-spacing:.06em;
+    position:relative;
+  }
+  .records-body{ padding:16px 18px 20px; }
+
+  .search-wrap{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    border:2px solid var(--line);
+    border-radius:12px;
+    padding:10px 14px;
+    background:#fff;
+    transition:border-color .2s ease, box-shadow .2s ease;
+    margin-bottom:14px;
+  }
+  .search-wrap:focus-within{ border-color:var(--gold); box-shadow: 0 0 0 4px rgba(184,134,11,0.12); }
+  .search-wrap svg{
+    width:17px; height:17px;
+    color:var(--gold-deep);
+    flex-shrink:0;
+  }
+  #recordSearchInput{
+    border:none;
+    outline:none;
+    font-size:15px;
+    font-family:'Trebuchet MS', sans-serif;
+    width:100%;
+    background:transparent;
+    color:var(--ink);
+  }
+  #recordSearchInput::placeholder{ color:#a89f8c; }
+
+  .records-count{
+    font-family:'Trebuchet MS', sans-serif;
+    font-size:11px;
+    color:#8a8272;
+    margin:0 0 10px 2px;
+    letter-spacing:.02em;
+  }
+  .records-count b{ color:var(--gold-deep); }
+
+  .records-table-wrap{
+    max-height:340px;
+    overflow-y:auto;
+    border:1px solid var(--line);
+    border-radius:12px;
+  }
+  .records-table-wrap::-webkit-scrollbar{ width:7px; }
+  .records-table-wrap::-webkit-scrollbar-thumb{ background:var(--line); border-radius:8px; }
+  .records-table-wrap::-webkit-scrollbar-track{ background:transparent; }
+
+  table.records-table{
+    width:100%;
+    border-collapse:collapse;
+    font-family:'Trebuchet MS', sans-serif;
+  }
+  table.records-table thead th{
+    position:sticky;
+    top:0;
+    background:var(--green-soft);
+    color:var(--green);
+    font-size:10.5px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-weight:700;
+    text-align:left;
+    padding:10px 12px;
+    border-bottom:2px solid var(--line);
+    z-index:1;
+  }
+  table.records-table tbody td{
+    padding:11px 12px;
+    font-size:13px;
+    color:var(--ink);
+    border-bottom:1px solid #efe9db;
+    vertical-align:middle;
+  }
+  table.records-table tbody tr{
+    transition: background .15s ease;
+    opacity:0;
+    animation: fadeUp .35s ease forwards;
+  }
+  table.records-table tbody tr:hover{ background:#faf3e0; }
+  table.records-table tbody tr:last-child td{ border-bottom:none; }
+
+  .rec-name{ font-weight:700; color:var(--ink); }
+  .rec-id{
+    display:inline-block;
+    background:var(--green-soft);
+    color:var(--green);
+    font-size:11px;
+    font-weight:700;
+    padding:3px 8px;
+    border-radius:6px;
+    letter-spacing:.02em;
+  }
+  .rec-date{ color:#8a8272; font-size:11.5px; white-space:nowrap; }
+
+  .rec-actions{ display:flex; gap:6px; white-space:nowrap; }
+  .rec-icon-btn{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:8px;
+    width:30px; height:30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    color:var(--gold-deep);
+    transition: all .15s ease;
+    flex-shrink:0;
+  }
+  .rec-icon-btn:hover{ background:var(--gold); border-color:var(--gold); color:#fff; transform:translateY(-1px); }
+  .rec-icon-btn.danger:hover{ background:var(--red); border-color:var(--red); }
+  .rec-icon-btn svg{ width:14px; height:14px; }
+
+  .records-empty{
+    text-align:center;
+    padding:34px 16px;
+    font-family:'Trebuchet MS', sans-serif;
+    color:#a89f8c;
+    font-size:13px;
+  }
+  .records-empty svg{ width:40px; height:40px; color:var(--line); margin-bottom:10px; }
 </style>
 </head>
 <body>
@@ -473,6 +640,40 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>
         Print Thank You PDF
       </button>
+    </div>
+  </div>
+</div>
+
+<div class="records-section" id="recordsSection">
+  <div class="records-head">
+    <p class="records-title">Xogta Family Cards</p>
+    <div class="records-subtitle">Diiwaanka Dhammaan Kalluunka la Diiwaan Geliyay</div>
+  </div>
+
+  <div class="records-body">
+    <div class="search-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input id="recordSearchInput" type="text" placeholder="Raadi magac ama lambar Family Card...">
+    </div>
+
+    <p class="records-count" id="recordsCount">0 diiwaan oo la helay</p>
+
+    <div class="records-table-wrap">
+      <table class="records-table" id="recordsTable">
+        <thead>
+          <tr>
+            <th>Magaca</th>
+            <th>Lambarka</th>
+            <th>Taariikhda</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="recordsTableBody"></tbody>
+      </table>
+      <div class="records-empty" id="recordsEmpty" style="display:none;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <div>Wax diiwaan ah lama helin</div>
+      </div>
     </div>
   </div>
 </div>
@@ -682,6 +883,141 @@
   document.getElementById('downloadThankYouPdfBtn')?.addEventListener('click', downloadThankYouPdf);
   document.getElementById('printThankYouPdfBtn')?.addEventListener('click', printThankYouPdf);
 
+  // ============================================================
+  // Xogta Family Cards — Keydinta, Muujinta iyo Raadinta (Search)
+  // ============================================================
+  const RECORDS_KEY = 'bax_family_card_records';
+
+  function loadRecords() {
+    try {
+      const raw = localStorage.getItem(RECORDS_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function saveRecords(records) {
+    localStorage.setItem(RECORDS_KEY, JSON.stringify(records));
+  }
+
+  function addRecordFromCurrentInputs() {
+    const nameInput = document.getElementById('familyCardName');
+    const idInput = document.getElementById('familyCardNumber');
+    const name = (nameInput && nameInput.value.trim()) || '';
+    const id = (idInput && idInput.value.trim()) || '';
+    if (!name && !id) return;
+
+    const records = loadRecords();
+    const now = new Date();
+    records.unshift({
+      id: 'rec_' + now.getTime(),
+      name: name || 'Magac lama gelin',
+      cardNumber: id || '—',
+      dateISO: now.toISOString(),
+      dateDisplay: now.toLocaleDateString('so-SO', { year: 'numeric', month: 'short', day: 'numeric' })
+    });
+    saveRecords(records);
+    renderRecordsTable(document.getElementById('recordSearchInput')?.value || '');
+  }
+
+  function deleteRecord(recId) {
+    const records = loadRecords().filter(r => r.id !== recId);
+    saveRecords(records);
+    renderRecordsTable(document.getElementById('recordSearchInput')?.value || '');
+  }
+
+  function refillFormFromRecord(recId) {
+    const rec = loadRecords().find(r => r.id === recId);
+    if (!rec) return;
+    const nameInput = document.getElementById('familyCardName');
+    const idInput = document.getElementById('familyCardNumber');
+    if (nameInput) nameInput.value = rec.name === 'Magac lama gelin' ? '' : rec.name;
+    if (idInput) idInput.value = rec.cardNumber === '\u2014' ? '' : rec.cardNumber;
+    document.getElementById('familyCardSection')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function renderRecordsTable(filterText) {
+    const tbody = document.getElementById('recordsTableBody');
+    const emptyState = document.getElementById('recordsEmpty');
+    const countEl = document.getElementById('recordsCount');
+    const tableWrap = document.getElementById('recordsTable');
+    if (!tbody) return;
+
+    const query = (filterText || '').trim().toLowerCase();
+    const all = loadRecords();
+    const filtered = query
+      ? all.filter(r =>
+          r.name.toLowerCase().includes(query) ||
+          r.cardNumber.toLowerCase().includes(query)
+        )
+      : all;
+
+    countEl.innerHTML = `<b>${filtered.length}</b> diiwaan oo la helay${query ? ` — raadinta: "${escapeHtml(filterText)}"` : ''}`;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = '';
+      tableWrap.style.display = 'none';
+      emptyState.style.display = 'block';
+      return;
+    }
+
+    tableWrap.style.display = 'table';
+    emptyState.style.display = 'none';
+
+    tbody.innerHTML = filtered.map((r, idx) => `
+      <tr style="animation-delay:${Math.min(idx * 0.03, 0.3)}s">
+        <td class="rec-name">${escapeHtml(r.name)}</td>
+        <td><span class="rec-id">${escapeHtml(r.cardNumber)}</span></td>
+        <td class="rec-date">${escapeHtml(r.dateDisplay)}</td>
+        <td>
+          <div class="rec-actions">
+            <button class="rec-icon-btn" title="Isticmaal" onclick="refillFormFromRecord('${r.id}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            </button>
+            <button class="rec-icon-btn danger" title="Tirtir" onclick="deleteRecord('${r.id}')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  document.getElementById('recordSearchInput')?.addEventListener('input', (e) => {
+    renderRecordsTable(e.target.value);
+  });
+
+  // Keydi diiwaanka marka PDF-ka la soo dejiyo ama la daabaco.
+  // (Isticmaal clone si loo ka fogaado in listener-ka hore laba jibbaaro.)
+  const downloadBtn = document.getElementById('downloadThankYouPdfBtn');
+  const printBtn = document.getElementById('printThankYouPdfBtn');
+  if (downloadBtn) {
+    const freshDownloadBtn = downloadBtn.cloneNode(true);
+    downloadBtn.replaceWith(freshDownloadBtn);
+    freshDownloadBtn.addEventListener('click', () => {
+      addRecordFromCurrentInputs();
+      downloadThankYouPdf();
+    });
+  }
+  if (printBtn) {
+    const freshPrintBtn = printBtn.cloneNode(true);
+    printBtn.replaceWith(freshPrintBtn);
+    freshPrintBtn.addEventListener('click', () => {
+      addRecordFromCurrentInputs();
+      printThankYouPdf();
+    });
+  }
+
+  renderRecordsTable('');
 </script>
 
 </body>
